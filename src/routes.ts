@@ -18,7 +18,7 @@ router.addHandler("detail", async ({ $, log }) => {
     .split("|")[0]
     .trim()
     .replace(/'/g, "")
-    .replace(/(\s+|\.|-)/g, "_")
+    .replace(/(\s+|\.|_)/g, "-")
     .toLowerCase();
 
   if (!title.toLowerCase().includes("performances")) {
