@@ -1,5 +1,7 @@
-// For more information, see https://crawlee.dev/
+import { Actor } from "apify";
 import { CheerioCrawler, ProxyConfiguration } from "crawlee";
+
+await Actor.init();
 
 import { router } from "./routes.js";
 
@@ -14,3 +16,5 @@ const crawler = new CheerioCrawler({
 });
 
 await crawler.run(startUrls);
+
+await Actor.exit();
