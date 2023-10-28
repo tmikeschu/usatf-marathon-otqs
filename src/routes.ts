@@ -10,7 +10,7 @@ router.addDefaultHandler(async ({ enqueueLinks, log }) => {
   });
 });
 
-router.addHandler("detail", async ({ request, $, log }) => {
+router.addHandler("detail", async ({ $, log }) => {
   const columns: string[] = [];
   const final: Record<string, any>[] = [];
   const title = $("title")
@@ -19,6 +19,7 @@ router.addHandler("detail", async ({ request, $, log }) => {
     .trim()
     .replace(/'/g, "")
     .replace(/(\s+|\.|-)/g, "_");
+
   if (!title.toLowerCase().includes("performances")) {
     log.info(`SKIPPING: ${title}`);
     return;
@@ -40,7 +41,6 @@ router.addHandler("detail", async ({ request, $, log }) => {
       ...Object.fromEntries(childText.map((text, i) => [columns[i], text])),
       rank: index,
     };
-    // log.info(`${data["Name"]}`);
     final.push(data);
   });
   await dataset.pushData(final);
